@@ -75,4 +75,12 @@ td {
     color: red;
     font-weight: bold;
 }
+.delete-btn {
+    background: #ff4d4d;
+    padding: 5px 10px;
+    font-size: 12px;
+}
 
+.delete-btn:hover {
+    background: #cc0000;
+}
