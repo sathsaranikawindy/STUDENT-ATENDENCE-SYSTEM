@@ -1,6 +1,5 @@
 ﻿# student-attendance-system
-# STUDENT-ATENDENCE-SYSTEM
-# Student Attendance System
+
 
 ## Group Members & Contributions
 * **ITBIN2313-0133 - **  UI/UX design, CSS styling, and LocalStorage logic.
@@ -12,6 +11,7 @@
 * Real-time table updates.
 * Data persistence using LocalStorage (Data remains after closing the browser).
 * Delete records functionality.
+
 
 
 
