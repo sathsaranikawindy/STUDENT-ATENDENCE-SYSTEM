@@ -1,13 +1,12 @@
 steps:
-  # 1. Docker image එක build කිරීම
+  
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/attendance-app', '.']
 
-  # 2. Image එක push කිරීම
+  
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/attendance-app']
-
-  # 3. Cloud Run වෙත deploy කිරීම
+    
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
