@@ -1,69 +1,70 @@
 const express = require("express");
-const fs = require("fs");
 const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000;
-const DATA_FILE = "./data.json";
+const PORT = process.env.PORT || 3000;
 
-/* ---------- data.json file check ---------- */
-if (!fs.existsSync(DATA_FILE)) {
-  fs.writeFileSync(
-    DATA_FILE,
-    JSON.stringify({ students: [], attendance: [] }, null, 2)
-  );
-}
+/* ---------- MongoDB Connect ---------- */
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("✅ MongoDB connected");
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message);
+  });
 
-/* ---------- helper functions ---------- */
-function readData() {
-  return JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
-}
+/* ---------- Schemas ---------- */
+const studentSchema = new mongoose.Schema({
+  name: { type: String, required: true }
+});
 
-function writeData(data) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
-}
+const attendanceSchema = new mongoose.Schema({
+  studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
+  date: String,
+  status: String
+});
 
-/* ---------- HOME ROUTE (IMPORTANT) ---------- */
+const Student = mongoose.model("Student", studentSchema);
+const Attendance = mongoose.model("Attendance", attendanceSchema);
+
+/* ---------- HOME ---------- */
 app.get("/", (req, res) => {
-  res.send("Student Attendance Backend is Running ✅");
+  res.send("Student Attendance Backend is Running ✅ (MongoDB)");
 });
 
 /* ---------- ADD STUDENT ---------- */
-app.post("/add-student", (req, res) => {
-  const data = readData();
-  const { name } = req.body;
+app.post("/add-student", async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) return res.status(400).json({ message: "Name required" });
 
-  if (!name) {
-    return res.status(400).json({ message: "Student name required" });
+    await Student.create({ name });
+    res.json({ message: "Student added" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  data.students.push({ id: Date.now(), name });
-  writeData(data);
-
-  res.json({ message: "Student added successfully" });
 });
 
 /* ---------- GET STUDENTS ---------- */
-app.get("/students", (req, res) => {
-  const data = readData();
-  res.json(data.students);
+app.get("/students", async (req, res) => {
+  const students = await Student.find();
+  res.json(students);
 });
 
 /* ---------- MARK ATTENDANCE ---------- */
-app.post("/attendance", (req, res) => {
-  const data = readData();
+app.post("/attendance", async (req, res) => {
   const { studentId, date, status } = req.body;
 
-  data.attendance.push({ studentId, date, status });
-  writeData(data);
-
+  await Attendance.create({ studentId, date, status });
   res.json({ message: "Attendance marked" });
 });
 
-/* ---------- START SERVER ---------- */
+/* ---------- START ---------- */
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
