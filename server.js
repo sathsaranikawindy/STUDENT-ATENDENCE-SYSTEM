@@ -63,6 +63,10 @@ app.post("/attendance", async (req, res) => {
   await Attendance.create({ studentId, date, status });
   res.json({ message: "Attendance marked" });
 });
+app.get("/attendance", async (req, res) => {
+  const list = await Attendance.find().populate("studentId");
+  res.json(list);
+});
 
 /* ---------- START ---------- */
 app.listen(PORT, () => {
