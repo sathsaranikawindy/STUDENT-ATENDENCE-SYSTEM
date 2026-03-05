@@ -25,3 +25,5 @@ jobs:
 
       - name: Start Server Test
         run: node server.js
+        env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
