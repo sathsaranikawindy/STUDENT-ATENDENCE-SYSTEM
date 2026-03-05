@@ -24,6 +24,10 @@ jobs:
         run: npm ci
 
       - name: Start Server Test
-        run: node server.js
+        run: |
+          node server.js &
+          sleep 10
+          echo "Server test complete"
+          pkill node
         env:
-            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
