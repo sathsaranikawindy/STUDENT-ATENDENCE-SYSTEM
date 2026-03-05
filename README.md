@@ -33,5 +33,6 @@ Pipeline steps:
 
 ## Group Members & Contributions
 - ITBIN2313-0133 – UI/UX design, CSS styling, LocalStorage logic, delete function implementation, backend Node.js connection
-- ITBIN2313-0124 – Developer, database design and implementation
+- ITBIN2313-0124 – Developer, database design and implementation,CICD Pipeline 
 - ITBIN2313-0126 – Developer
+
