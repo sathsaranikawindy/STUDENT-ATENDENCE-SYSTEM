@@ -1,4 +1,8 @@
-# Student Attendance System
+#**Deployment Link of STUDENT ATENDANCE SYSTEM**
+this is the URL.can be use access to the STUDENT-ATENDENCE-SYSTEM. 
+
+( https://sathsaranikawindy.github.io/STUDENT-ATENDENCE-SYSTEM/ )
+
 
 [![CI Pipeline](https://github.com/sathsaranikawindy/STUDENT-ATENDENCE-SYSTEM/actions/workflows/ci.yml/badge.svg)](https://github.com/sathsaranikawindy/STUDENT-ATENDENCE-SYSTEM/actions/workflows/ci.yml)
 
@@ -35,6 +39,7 @@ Pipeline steps:
 - ITBIN2313-0133 – developer, UI/UX design, CSS styling, LocalStorage logic, delete function implementation, backend Node.js connection
 - ITBIN2313-0124 – Developer, database design and implementation,CICD Pipeline 
 - ITBIN2313-0126 – Developer, cloud connecting
+
 
 
 
