@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules
+npm-debug.log
+
+# Version control
+.git
+.gitignore
+
+# Environment variables and IDE settings
+.env
+.vscode
+.DS_Store

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Application Service
+  attendance-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: student_app_container
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://db_service:27017/attendance_db
+    depends_on:
+      - db_service
+    networks:
+      - attendance_network
+
+  # Database Service
+  db_service:
+    image: mongo:latest
+    container_name: mongodb_container
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - attendance_network
+
+# Define custom network for isolation
+networks:
+  attendance_network:
+    driver: bridge
+
+# Define volume for data persistence
+volumes:
+  mongo_data:
