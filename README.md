@@ -36,9 +36,9 @@ Pipeline steps:
 - GitHub Actions
 
 ## Group Members & Contributions
-- ITBIN2313-0133 – developer, UI/UX design, CSS styling, LocalStorage logic, delete function implementation, backend Node.js connection
-- ITBIN2313-0124 – Developer, database design and implementation,CICD Pipeline 
-- ITBIN2313-0126 – Developer, cloud connecting
+- ITBIN2313-0133 Y.K.Sathsarani– Lead Developer: UI/UX design, Frontend development (HTML5/CSS3), LocalStorage persistence logic, and Node.js backend integration.
+- ITBIN2313-0124 W.A.J.nawodya weragoda– Developer, database design and implementation,CICD Pipeline 
+- ITBIN2313-0126 Wijarange chamudi lakmindi – Developer, cloud connecting
 
 
 
